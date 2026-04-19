@@ -1,0 +1,28 @@
+# Ignore Windows system directories
+AppData/
+Application Data/
+Cookies/
+Documents/My Music/
+Documents/My Pictures/
+Documents/My Videos/
+Local Settings/
+My Documents/
+NetHood/
+PrintHood/
+Recent/
+SendTo/
+Start Menu/
+Templates/
+
+# Ignore OneDrive sync issues
+OneDrive/
+
+# Ignore VS Code extensions and cache
+.vscode/extensions/
+
+# Ignore Chroma database
+chroma_db/
+
+# Ignore other potential issues
+*.tmp
+*.log
