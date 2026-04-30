@@ -1,4 +1,4 @@
-# Mosaed — Intelligent Chatbot for Master's Students
+# Mosaed - Intelligent Chatbot for Master's Students
 
 Mosaed is an AI chatbot built for master's students at the University of Sharjah. It answers questions about academic regulations, thesis procedures, registration deadlines, program requirements, and more using RAG (Retrieved Augmented Generation). All responses are grounded in official UOS documents.
 
@@ -15,13 +15,13 @@ Mosaed is an AI chatbot built for master's students at the University of Sharjah
 ## Tech Stack
 
 ### Language & Runtime
-- **Python 3.11** — backend and RAG pipeline
-- **Node.js 18+** — frontend build tooling
+- **Python 3.11** - backend and RAG pipeline
+- **Node.js 18+** - frontend build tooling
 
 ### Frontend
-- **React 18** + **Vite** — UI framework and build tool
-- **CSS Modules** — component-scoped styling
-- **React Router** — client-side navigation between pages
+- **React 18** + **Vite** - UI framework and build tool
+- **CSS Modules** - component-scoped styling
+- **React Router** - client-side navigation between pages
 
 ### Backend
 - **FastAPI** — async REST API
@@ -30,9 +30,9 @@ Mosaed is an AI chatbot built for master's students at the University of Sharjah
 - **JWT (python-jose)** + **bcrypt** — authentication and password hashing
 
 ### RAG Pipeline
-- **ChromaDB** — vector database for storing and searching document embeddings
-- **Ollama (nomic-embed-text)** — local embedding model
-- **Groq API (Llama 4 scout)** — cloud LLM for generating answers and rewriting queries
+- **ChromaDB** - vector database for storing and searching document embeddings
+- **Ollama (nomic-embed-text)** - local embedding model
+- **Groq API (Llama 4 scout)** - cloud LLM for generating answers and rewriting queries
 - **LangChain + Docling** — PDF loading, Markdown conversion, and chunking
 
 ### Documents (data sources)
