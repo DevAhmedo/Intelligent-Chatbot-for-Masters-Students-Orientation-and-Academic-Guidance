@@ -36,6 +36,7 @@ const LogoutIcon = () => (
   </svg>
 );
 
+// Falls back to the email prefix if the user has no display name set.
 function getInitials(user) {
   const name = user?.name || user?.email || "U";
   return name.split(" ").map((w) => w[0]).join("").slice(0, 2).toUpperCase();

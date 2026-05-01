@@ -13,6 +13,7 @@ export default function ChatInput({ onSend, disabled }) {
   const [text, setText] = useState("");
   const textareaRef = useRef(null);
 
+  // Auto-resize textarea up to 160 px; beyond that it scrolls internally.
   useEffect(() => {
     const ta = textareaRef.current;
     if (!ta) return;
@@ -29,6 +30,7 @@ export default function ChatInput({ onSend, disabled }) {
     if (textareaRef.current) textareaRef.current.style.height = "auto";
   };
 
+  // Enter submits; Shift+Enter inserts a newline (standard chat convention).
   const handleKey = (e) => {
     if (e.key === "Enter" && !e.shiftKey) handleSubmit(e);
   };

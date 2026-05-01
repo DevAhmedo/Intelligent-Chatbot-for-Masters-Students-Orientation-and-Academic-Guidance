@@ -6,6 +6,8 @@ import SignUpPage from "./pages/SignUpPage";
 import LandingPage from "./pages/LandingPage";
 import ForgotPasswordPage from "./pages/ForgotPasswordPage";
 
+// Client-side router: a single `view` string replaces a URL-based router
+// because the app is a single-page experience with no deep-link requirements.
 export default function App() {
   const { isAuthenticated } = useAuth();
   const [view, setView] = useState("landing");

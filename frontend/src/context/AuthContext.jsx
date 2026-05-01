@@ -3,13 +3,16 @@ import { createContext, useContext, useState, useCallback } from "react";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  // Reads persisted session on first load.
+  // localStorage survives browser restarts ("keep me signed in");
+  // sessionStorage is cleared when the tab closes (default, no checkbox).
   const [user, setUser] = useState(() => {
     try {
       const remembered = localStorage.getItem("auth_remember") === "true";
       const stored = remembered
         ? localStorage.getItem("auth_user")
         : sessionStorage.getItem("auth_user");
-      // clear any stale localStorage tokens that weren't "keep me signed in"
+      // Clear stale localStorage tokens when the user did not opt into persistence.
       if (!remembered) {
         localStorage.removeItem("auth_token");
         localStorage.removeItem("auth_user");

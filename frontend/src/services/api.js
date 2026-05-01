@@ -1,5 +1,6 @@
 import { getToken } from "../context/AuthContext";
 
+// Falls back to an empty base so the Vite dev-proxy handles /api/* rewrites.
 const API_BASE = import.meta.env.VITE_API_URL || "";
 
 async function request(path, options = {}) {
@@ -9,9 +10,11 @@ async function request(path, options = {}) {
 
   const res = await fetch(`${API_BASE}${path}`, { ...options, headers });
   if (!res.ok) {
+    // FastAPI wraps error messages in a `detail` field.
     const err = await res.json().catch(() => ({ detail: res.statusText }));
     throw new Error(err.detail || "Request failed");
   }
+  // 204 No Content (e.g. DELETE) has no body; res.json() would throw.
   if (res.status === 204) return null;
   return res.json();
 }

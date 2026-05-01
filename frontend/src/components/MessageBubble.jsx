@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "./MessageBubble.module.css";
 
+// Typewriter speed: 5 chars every 16 ms ≈ ~300 chars/sec, smooth at 60 fps.
 const CHARS_PER_FRAME = 5;
 const FRAME_MS = 16;
 
@@ -27,6 +28,8 @@ export default function MessageBubble({ message }) {
     }, FRAME_MS);
 
     return () => clearInterval(intervalRef.current);
+  // Intentionally empty deps: the animation runs once when the bubble mounts.
+  // Adding `message.content` would restart the animation on every re-render.
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (

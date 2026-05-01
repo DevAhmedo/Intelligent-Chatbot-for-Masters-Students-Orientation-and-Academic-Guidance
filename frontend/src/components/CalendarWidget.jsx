@@ -48,6 +48,8 @@ const EVENTS = {
   ],
 };
 
+// Hardcoded to a demo date so the calendar shows meaningful "current/upcoming"
+// badges regardless of when the app is run. Replace with new Date() for production.
 function todayStr() {
   //return new Date().toISOString().slice(0, 10);
   return "2026-08-28";

@@ -8,7 +8,7 @@ from jose import jwt
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "change-me-in-production")
 ALGORITHM = "HS256"
-TOKEN_EXPIRE_DAYS = 7
+TOKEN_EXPIRE_DAYS = 7  # tokens stay valid for one week; re-login required after expiry
 
 
 def _prehash(password: str) -> bytes:

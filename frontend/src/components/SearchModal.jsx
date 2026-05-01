@@ -44,6 +44,7 @@ export default function SearchModal({ sessions, onSelect, onClose }) {
     item?.scrollIntoView({ block: "nearest" });
   }, [activeIdx]);
 
+  // Full keyboard navigation: Escape closes, arrows move highlight, Enter selects.
   const handleKey = (e) => {
     if (e.key === "Escape") { onClose(); return; }
     if (e.key === "ArrowDown") {

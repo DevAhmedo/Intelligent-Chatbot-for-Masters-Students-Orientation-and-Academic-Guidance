@@ -71,6 +71,7 @@ Standalone question:
 """
 
 
+# Queries asking for lists or procedures need more context chunks than point questions.
 _BROAD_PATTERN = re.compile(
     r'\b(list|summarize|summary|overview|complete|full|steps|roadmap|'
     r'requirements|conditions|procedure|process|guide)\b'
@@ -143,6 +144,8 @@ def query_rag(query_text: str, chat_history: list[dict] | None = None):
     standalone_query = query_text
 
     if history_text:
+        # Resolve pronouns ("it", "that program") using prior turns so the
+        # vector search query is self-contained and hits the right chunks.
         rewrite_prompt = STANDALONE_QUESTION_TEMPLATE.format(
             chat_history=history_text,
             question=query_text
@@ -156,6 +159,8 @@ def query_rag(query_text: str, chat_history: list[dict] | None = None):
 
     broad_query = is_broad_query(standalone_query)
 
+    # Broad queries fetch fewer candidates (coverage > precision);
+    # focused questions fetch more so the threshold filter has room to work.
     raw_results = db.similarity_search_with_score(
         standalone_query,
         k=10 if broad_query else 20
@@ -165,6 +170,7 @@ def query_rag(query_text: str, chat_history: list[dict] | None = None):
         results = raw_results[:10]
     else:
         filtered = [(doc, score) for doc, score in raw_results if score < SCORE_THRESHOLD]
+        # Fallback: always show something rather than returning nothing.
         if not filtered:
             filtered = raw_results[:5]
         results = _select_diverse_chunks(filtered, max_results=8)

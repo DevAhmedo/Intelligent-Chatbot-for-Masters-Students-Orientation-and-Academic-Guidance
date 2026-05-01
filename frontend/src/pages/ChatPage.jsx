@@ -18,6 +18,7 @@ export default function ChatPage() {
 
   const isEmpty = messages.length === 0 && !isLoading;
 
+  // Ctrl/Cmd+K toggles the session search modal (standard command-palette shortcut).
   useEffect(() => {
     const handleKey = (e) => {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
@@ -70,6 +71,7 @@ export default function ChatPage() {
 
   const handleSend = async (question) => {
     setError(null);
+    // Optimistic UI: show the user's message immediately without waiting for the server.
     const tempUserMsg = { tempId: `u-${Date.now()}`, role: "user", content: question };
     setMessages((prev) => [...prev, tempUserMsg]);
     setIsLoading(true);
@@ -82,6 +84,7 @@ export default function ChatPage() {
       } else {
         fetchSessions();
       }
+      // `animate: true` triggers the typewriter effect in MessageBubble.
       setMessages((prev) => [...prev, {
         id: result.message_id,
         role: "assistant",

@@ -8,6 +8,8 @@ DATABASE_URL = os.getenv(
 )
 
 engine = create_async_engine(DATABASE_URL, echo=False, future=True)
+# expire_on_commit=False prevents lazy-load errors when reading ORM objects
+# after a commit in an async context (attributes would otherwise be expired).
 AsyncSessionLocal = async_sessionmaker(engine, expire_on_commit=False, class_=AsyncSession)
 
 

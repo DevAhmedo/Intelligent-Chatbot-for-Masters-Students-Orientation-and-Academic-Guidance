@@ -5,6 +5,7 @@ import styles from "./FeedbackButtons.module.css";
 export default function FeedbackButtons({ messageId }) {
   const [voted, setVoted] = useState(null); // "positive" | "negative" | null
 
+  // Guard against double-votes: once voted, the buttons are disabled and ignored.
   const handleVote = async (rating) => {
     if (voted) return;
     try {

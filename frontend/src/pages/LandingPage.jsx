@@ -14,6 +14,7 @@ export default function LandingPage({ onLogin, onSignup }) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [onLogin]);
 
+  // Updates CSS custom properties used by the button's radial-gradient spotlight effect.
   const trackMouse = (e) => {
     const r = e.currentTarget.getBoundingClientRect();
     e.currentTarget.style.setProperty("--hx", (e.clientX - r.left) + "px");

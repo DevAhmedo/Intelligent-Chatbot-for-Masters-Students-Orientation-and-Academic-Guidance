@@ -67,6 +67,8 @@ async def delete_session(
     if not result.scalar_one_or_none():
         raise HTTPException(status_code=404, detail="Session not found.")
 
+    # Delete feedback and messages explicitly; Feedback has no DB-level cascade
+    # from the session, so we must delete it before the messages row is removed.
     msg_ids_result = await db.execute(select(ChatMessage.id).where(ChatMessage.session_id == session_id))
     message_ids = msg_ids_result.scalars().all()
     if message_ids:

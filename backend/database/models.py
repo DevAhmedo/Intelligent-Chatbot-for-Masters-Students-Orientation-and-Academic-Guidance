@@ -5,6 +5,7 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from backend.database.connection import Base
 
 
+# timezone.utc makes timestamps comparable across regions without ambiguity.
 def _utcnow() -> datetime:
     return datetime.now(timezone.utc)
 
@@ -48,6 +49,8 @@ class ChatSession(Base):
 
     user: Mapped["User | None"] = relationship("User", back_populates="sessions")
     folder: Mapped["Folder | None"] = relationship("Folder", back_populates="sessions")
+    # passive_deletes=True tells SQLAlchemy to rely on the DB-level CASCADE
+    # rather than loading all child rows into memory before deleting.
     messages: Mapped[list["ChatMessage"]] = relationship("ChatMessage", back_populates="session", order_by="ChatMessage.created_at", passive_deletes=True)
 
 

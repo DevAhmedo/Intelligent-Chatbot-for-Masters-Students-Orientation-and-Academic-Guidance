@@ -30,6 +30,7 @@ const TrashIcon = () => (
 );
 
 // ── Date grouping ─────────────────────────────────────────────────────────────
+// Buckets sessions by recency so the sidebar matches the ChatGPT-style layout.
 function groupSessions(sessions) {
   const now = new Date();
   const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());

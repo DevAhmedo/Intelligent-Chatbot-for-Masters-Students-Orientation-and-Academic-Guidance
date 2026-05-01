@@ -23,7 +23,7 @@ async def submit_feedback(payload: FeedbackRequest, db: AsyncSession = Depends(g
     if not message:
         raise HTTPException(status_code=404, detail="Message not found.")
 
-    # Check for existing feedback
+    # Upsert: if the user changes their vote, overwrite the existing record.
     fb_result = await db.execute(select(Feedback).where(Feedback.message_id == payload.message_id))
     existing = fb_result.scalar_one_or_none()
     if existing:

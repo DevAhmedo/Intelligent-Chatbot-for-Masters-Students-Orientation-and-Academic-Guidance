@@ -3,6 +3,7 @@ import { api } from "../services/api";
 import styles from "./AuthPage.module.css";
 
 export default function ForgotPasswordPage({ onBack }) {
+  // Three-step flow: collect email → enter code + new password → confirmation.
   const [step, setStep] = useState("request"); // "request" | "reset" | "done"
   const [email, setEmail] = useState("");
   const [code, setCode] = useState("");
@@ -24,7 +25,8 @@ export default function ForgotPasswordPage({ onBack }) {
     setServerError("");
     try {
       const data = await api.forgotPassword(email);
-      if (data.code) setDevCode(data.code); // dev mode: API returns code
+      // Dev mode only: the API echoes the code back so testers don't need email delivery.
+      if (data.code) setDevCode(data.code);
       setStep("reset");
     } catch (err) {
       setServerError(err.message || "Something went wrong.");
