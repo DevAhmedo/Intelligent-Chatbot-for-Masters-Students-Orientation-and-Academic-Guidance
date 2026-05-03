@@ -24,16 +24,16 @@ Mosaed is an AI chatbot built for master's students at the University of Sharjah
 - **React Router** - client-side navigation between pages
 
 ### Backend
-- **FastAPI** — async REST API
+- **FastAPI** - async REST API
 - **PostgreSQL** — stores users, sessions, messages, folders, and feedback
-- **SQLAlchemy (async)** — ORM for database access
+- **SQLAlchemy (async)** - ORM for database access
 - **JWT (python-jose)** + **bcrypt** — authentication and password hashing
 
 ### RAG Pipeline
 - **ChromaDB** - vector database for storing and searching document embeddings
 - **Ollama (nomic-embed-text)** - local embedding model
 - **Groq API (Llama 4 scout)** - cloud LLM for generating answers and rewriting queries
-- **LangChain + Docling** — PDF loading, Markdown conversion, and chunking
+- **LangChain + Docling** - PDF loading, Markdown conversion, and chunking
 
 ### Documents (data sources)
 - Master's Executive Regulations
